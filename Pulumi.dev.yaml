@@ -1,0 +1,9 @@
+encryptionsalt: v1:fMxdAUwVflk=:v1:qDQJQ+EOejZ6a0Yv:FmLFtgOLA77MGbBxDbIQLCb4EBrGRA==
+config:
+  azure-native:location: centralindia
+  pulumi-lab:owner: thivagar
+  pulumi-lab:environment: dev
+  pulumi-lab:costCenter: demo-project
+  pulumi-lab:storageAccountName: stpulumilabthiv01
+  pulumi-lab:demoSecret:
+    secure: v1:d8wUKSe1CCJqkCkm:NbaQit42lrfepcWm8tXPx/LTsxGdeVY7udD685JwvvI2
