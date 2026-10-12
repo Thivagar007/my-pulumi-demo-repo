@@ -1,0 +1,9 @@
+encryptionsalt: v1:BORdGa3pEg8=:v1:U8lAdg6/Hrpn8TYX:hRwhXE6gqvSQIJUVUXLPw7wXmb7XxQ==
+config:
+  azure-native:location: southindia
+  pulumi-lab:environment: prod
+  pulumi-lab:owner: thivagar
+  pulumi-lab:costCenter: demo-project
+  pulumi-lab:storageAccountName: stpulumilabthivprd01
+  pulumi-lab:demoSecret:
+    secure: v1:YsXfZAGW3xFBTfRx:Tg/CnMzLK+DZGsbLyBw8Mj8Y2ZKf7GFTDhUM
