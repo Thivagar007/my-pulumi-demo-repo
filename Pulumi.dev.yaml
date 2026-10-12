@@ -7,3 +7,4 @@ config:
   pulumi-lab:storageAccountName: stpulumilabthiv01
   pulumi-lab:demoSecret:
     secure: v1:d8wUKSe1CCJqkCkm:NbaQit42lrfepcWm8tXPx/LTsxGdeVY7udD685JwvvI2
+  pulumi-lab:keyVaultName: kv-plab-dev-thiv01
