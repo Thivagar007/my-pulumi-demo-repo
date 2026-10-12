@@ -40,7 +40,36 @@ blob_container = azure_native.storage.BlobContainer("blobContainer",
     resource_group_name=resource_group_resource.name,
     public_access=azure_native.storage.PublicAccess.NONE)
 
+subnets = [
+    {"name": "snet-app",  "prefix": "10.10.1.0/24"},
+    {"name": "snet-data", "prefix": "10.10.2.0/24"},
+    {"name": "snet-aks",  "prefix": "10.10.4.0/22"},
+    {"name": "snet-mgmt", "prefix": "10.10.3.0/24"},
+]
+
+virtual_network = azure_native.network.VirtualNetwork("virtualNetwork",
+    address_space={
+        "address_prefixes": ["10.10.0.0/16"],
+    },
+    location=resource_group_resource.location,
+    resource_group_name=resource_group_resource.name,
+    tags=(common_tags),
+    virtual_network_name=f"vnet-pulumi-lab-{environment}")
+
+created_subnets = {}
+
+for subnet in subnets:
+    created_subnets[subnet["name"]] = azure_native.network.Subnet(
+        f"subnet-{subnet['name']}",
+        subnet_name=subnet["name"],
+        address_prefix=subnet["prefix"],
+        resource_group_name=resource_group_resource.name,
+        virtual_network_name=virtual_network.name) 
+
 pulumi.export("resource_group_name", resource_group_resource.name)
 pulumi.export("storage_account_name", storage_account.name)
 pulumi.export("blob_container_name", blob_container.name)
 pulumi.export("blob_endpoint", storage_account.primary_endpoints.blob)
+pulumi.export("virtual_network_name", virtual_network.name)
+pulumi.export("virtual_network_id", virtual_network.id)
+pulumi.export("subnet_ids", {name: s.id for name, s in created_subnets.items()})
