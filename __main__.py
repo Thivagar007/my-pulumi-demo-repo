@@ -1,28 +1,20 @@
 import pulumi
 import pulumi_azure_native as azure_native
 
-config = pulumi.Config("pulumi-lab")
-owner = config.require("owner")
-environment = config.require("environment")
-cost_center = config.require("costCenter")
-storage_account_name = config.require("storageAccountName")
-project = config.get("project") or "my-project"
-demo_secret = config.require_secret("demoSecret")
-pulumi.export("demo_secret", demo_secret)
-
 common_tags = {
-    "environment": environment,
-    "project": project,
-    "owner": owner,
-    "cost-center": cost_center,
+    "environment": "dev",
+    "project": "my-project",
+    "owner": "my-team",
+    "cost-center": "demo-project",
 }
 
 resource_group_resource = azure_native.resources.ResourceGroup("resourceGroupResource",
-    resource_group_name=f"rg-pulumi-lab-{environment}",
+    location="centralindia",
+    resource_group_name="rg-pulumi-lab-dev",
     tags=(common_tags))
 
 storage_account = azure_native.storage.StorageAccount("storageAccount",
-    account_name=storage_account_name,
+    account_name="stpulumilabthiv01",
     allow_blob_public_access=False,
 
     kind=azure_native.storage.Kind.STORAGE_V2,
